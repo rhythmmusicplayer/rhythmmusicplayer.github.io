@@ -29,7 +29,10 @@
                 <img src="images/app_logo.svg" alt="Rhythm Logo">
                 <span style="font-family: 'Syne', sans-serif; font-weight: 700;">Rhythm</span>
             </a>
-            <a href="#download" class="btn btn-primary" style="padding: 10px 24px; font-size: 1rem;">Get APK</a>
+            <div style="display: flex; gap: 12px; align-items: center;">
+                <a href="mailto:rhythmmusicplayer@gmail.com?subject=Rhythm%20Bug%20Report%20%26%20Feedback" class="btn" style="padding: 10px 24px; font-size: 1rem; border: 1px solid var(--outline); background: transparent; color: var(--on-surface);">Report Bug</a>
+                <a href="#download" class="btn btn-primary" style="padding: 10px 24px; font-size: 1rem;">Get APK</a>
+            </div>
         </div>
     </nav>
 
@@ -132,6 +135,17 @@
         <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path></svg>
     </div>
 
+    <section id="teaser" class="teaser-section" style="padding: 60px 0; background: transparent; text-align: center;">
+        <div class="container">
+            <h2 class="section-title reveal">See Rhythm in Action</h2>
+            <p class="section-subtitle reveal">A quick teaser of the immersive and dynamic music experience.</p>
+
+            <div class="mockup-container reveal" style="max-width: 320px; margin: 40px auto; border: 12px solid #222; border-radius: 36px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); overflow: hidden; background: #000;">
+                <img src="images/app_teaser.gif" alt="Rhythm App Teaser" style="width: 100%; display: block; border-radius: 24px;">
+            </div>
+        </div>
+    </section>
+
     <section id="gallery" class="gallery-section">
         <div class="container">
             <h2 class="section-title reveal">A Visual Journey</h2>
@@ -152,34 +166,7 @@
         </div>
     </section>
 
-    <section id="tech">
-        <div class="container" style="text-align: center;">
-            <h2 class="section-title reveal">Technical Excellence</h2>
-            <p class="section-subtitle reveal">Built with the latest APIs and technologies.</p>
 
-            <div class="tech-logos reveal">
-                <svg class="tech-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img"><title>Kotlin</title><path d="M1.5 24l11-11L24 24zM1.5 0h11l11 11-11 11L1.5 11zM1.5 0l11 11-11 11z"/></svg>
-                <svg class="tech-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img"><title>Jetpack Compose</title><path d="M12 0L1.5 6v12L12 24l10.5-6V6L12 0zm0 3.5l7 4v9l-7 4-7-4v-9l7-4z"/></svg>
-                <svg class="tech-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img"><title>Media3</title><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-                <svg class="tech-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img"><title>Material 3</title><path d="M12 2L2 22h20L12 2zm0 4l7.5 14H4.5L12 6z"/></svg>
-            </div>
-
-            <div class="github-stats reveal">
-                <div class="stat-item">
-                    <span class="stat-value">Open</span>
-                    <span class="stat-label">Source</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value">100%</span>
-                    <span class="stat-label">Kotlin</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value">Zero</span>
-                    <span class="stat-label">Ads</span>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <section id="download" class="cta-section">
         <div class="container cta-content reveal">
@@ -196,7 +183,7 @@
             <p style="font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; opacity: 0.8;">Designed and built by Team Rhythm</p>
             <div class="footer-links">
                 <a href="https://github.com/sreejith19931/Rhythm-App">GitHub</a>
-                <a href="https://github.com/sreejith19931/Rhythm-App/issues">Issues</a>
+                <a href="mailto:rhythmmusicplayer@gmail.com?subject=Rhythm%20Support%20%26%20Feedback">Contact Support</a>
                 <a href="https://opensource.org/licenses/MIT">MIT License</a>
             </div>
         </div>
@@ -290,9 +277,14 @@
                 currentThemeIndex = (currentThemeIndex + 1) % themes.length;
                 const theme = themes[currentThemeIndex];
                 changeTheme(theme.primary, theme.container, null, false);
-            }, 3000);
+            }, 1000);
 
-            setTimeout(() => { if (autoCycleInterval) clearInterval(autoCycleInterval); }, 15000);
+            setTimeout(() => {
+                if (autoCycleInterval) clearInterval(autoCycleInterval);
+                currentThemeIndex = 0;
+                const theme = themes[0];
+                changeTheme(theme.primary, theme.container, null, false);
+            }, 4000);
         }
 
         // Hero Mouse Parallax
