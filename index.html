@@ -44,17 +44,21 @@
                 <div class="color-dot" style="background: #FB8C00;" onclick="changeTheme('#FB8C00', '#E65100', this)"></div>
             </div>
         </div>
-        <a href="#features" class="scroll-indicator">↓</a>
+        <a href="#intro" class="scroll-indicator">↓</a>
     </header>
+
+    <div class="divider">
+        <svg viewBox="0 0 1440 120"><path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path></svg>
+    </div>
 
     <section id="intro">
         <div class="container reveal">
             <div class="value-props">
-                <div class="value-card">
+                <div class="value-card stagger-1">
                     <h3>Pure Performance</h3>
                     <p>Built with Jetpack Compose and Media3 for lightning-fast responsiveness and flawless playback.</p>
                 </div>
-                <div class="value-card">
+                <div class="value-card stagger-2">
                     <h3>Total Privacy</h3>
                     <p>No ads, no tracking, and no internet required. Your music belongs to you, and Rhythm keeps it that way.</p>
                 </div>
@@ -68,32 +72,32 @@
             <p class="section-subtitle reveal">Rhythm isn't just a player; it's a toolkit for the discerning listener.</p>
 
             <div class="features-grid">
-                <div class="feature-card reveal">
+                <div class="feature-card reveal stagger-1">
                     <span class="icon">🎨</span>
                     <h3>Material You Theming</h3>
                     <p>The entire interface transforms to complement the colors of your album artwork, creating a truly immersive visual experience that changes with every track.</p>
                 </div>
-                <div class="feature-card reveal">
+                <div class="feature-card reveal stagger-2">
                     <span class="icon">🎚️</span>
                     <h3>Studio-Grade EQ</h3>
                     <p>A precision 5-band equalizer with custom presets, environmental reverb, and bass boost. Fine-tune your audio to match your headphones perfectly.</p>
                 </div>
-                <div class="feature-card reveal">
+                <div class="feature-card reveal stagger-3">
                     <span class="icon">✂️</span>
                     <h3>Precision Trimmer</h3>
                     <p>Found the perfect hook? Use the built-in trimmer to create high-quality ringtones or notification clips directly from your local library.</p>
                 </div>
-                <div class="feature-card reveal">
+                <div class="feature-card reveal stagger-4">
                     <span class="icon">🚗</span>
                     <h3>Optimized Driving</h3>
                     <p>A dedicated interface with large, tactile controls and high-contrast visuals designed for safe, distraction-free use while on the move.</p>
                 </div>
-                <div class="feature-card reveal">
+                <div class="feature-card reveal stagger-5">
                     <span class="icon">🧹</span>
                     <h3>Library Janitor</h3>
                     <p>Automatically repair missing metadata and fetch high-resolution album art. Keep your collection organized and looking its absolute best.</p>
                 </div>
-                <div class="feature-card reveal">
+                <div class="feature-card reveal stagger-6">
                     <span class="icon">📜</span>
                     <h3>Seamless Lyrics</h3>
                     <p>Dive deeper into your music with integrated support for both synced and static lyrics. Never miss a word of your favorite anthems.</p>
@@ -106,15 +110,19 @@
         <div class="container">
             <h2 class="section-title reveal">A Visual Journey</h2>
             <p class="section-subtitle reveal">Modern design language meets functional simplicity.</p>
-            <div class="screenshots reveal">
-                <img src="images/screenshot_tracks.png" alt="Track List">
-                <img src="images/screenshot_player.png" alt="Now Playing">
-                <img src="images/screenshot_driving.png" alt="Driving Mode">
-                <img src="images/screenshot_equalizer.png" alt="Equalizer Controls">
-                <img src="images/screenshot_trimmer.png" alt="Audio Trimmer">
-                <img src="images/screenshot_folders.png" alt="Folder Navigation">
+            <div class="gallery-container reveal stagger-1">
+                <div class="gallery-arrow left" onclick="scrollGallery(-1)">‹</div>
+                <div class="screenshots" id="screenshot-slider">
+                    <img src="images/screenshot_tracks.png" alt="Track List">
+                    <img src="images/screenshot_player.png" alt="Now Playing">
+                    <img src="images/screenshot_driving.png" alt="Driving Mode">
+                    <img src="images/screenshot_equalizer.png" alt="Equalizer Controls">
+                    <img src="images/screenshot_trimmer.png" alt="Audio Trimmer">
+                    <img src="images/screenshot_folders.png" alt="Folder Navigation">
+                </div>
+                <div class="gallery-arrow right" onclick="scrollGallery(1)">›</div>
             </div>
-            <p class="reveal" style="text-align: center; margin-top: 32px; color: var(--on-surface-variant); font-weight: 500;">← Swipe to explore the interface →</p>
+            <p class="reveal stagger-2" style="text-align: center; margin-top: 32px; color: var(--on-surface-variant); font-weight: 500;">← Scroll to explore the interface →</p>
         </div>
     </section>
 
@@ -123,23 +131,22 @@
             <h2 class="section-title reveal">Built for Modern Android</h2>
             <p class="section-subtitle reveal">Leveraging the latest APIs and technologies.</p>
 
-            <div class="tech-logos reveal">
-                <!-- Simplified SVG Logos -->
-                <svg class="tech-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="Kotlin">
+            <div class="tech-logos reveal stagger-1">
+                <svg class="tech-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1.5 24l11-11L24 24zM1.5 0h11l11 11-11 11L1.5 11zM1.5 0l11 11-11 11z"/>
                 </svg>
-                <svg class="tech-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="Jetpack Compose">
+                <svg class="tech-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 0L1.5 6v12L12 24l10.5-6V6L12 0zm0 3.5l7 4v9l-7 4-7-4v-9l7-4z"/>
                 </svg>
-                <svg class="tech-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="ExoPlayer">
+                <svg class="tech-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
                 </svg>
-                <svg class="tech-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="Material Design">
+                <svg class="tech-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2L2 22h20L12 2zm0 4l7.5 14H4.5L12 6z"/>
                 </svg>
             </div>
 
-            <div class="github-stats reveal">
+            <div class="github-stats reveal stagger-2">
                 <div class="stat-item">
                     <span class="stat-value">Open</span>
                     <span class="stat-label">Source</span>
@@ -179,16 +186,25 @@
         </div>
     </footer>
 
+    <a href="#" id="back-to-top">↑</a>
+
     <script>
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
+            const btt = document.getElementById('back-to-top');
             const heroIcon = document.querySelector('.app-icon-hero');
 
             if (window.scrollY > 50) {
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
+            }
+
+            if (window.scrollY > 300) {
+                btt.classList.add('visible');
+            } else {
+                btt.classList.remove('visible');
             }
 
             // Scroll-linked animation for hero icon
@@ -207,12 +223,19 @@
             for (let i = 0; i < reveals.length; i++) {
                 const windowHeight = window.innerHeight;
                 const elementTop = reveals[i].getBoundingClientRect().top;
-                const elementVisible = 150;
+                const elementVisible = 100;
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add('active');
                 }
             }
         };
+
+        // Gallery scroll
+        function scrollGallery(direction) {
+            const slider = document.getElementById('screenshot-slider');
+            const scrollAmount = 400 * direction;
+            slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
 
         // Theme changer
         function changeTheme(primary, container, el) {
@@ -230,7 +253,8 @@
         }
 
         window.addEventListener('scroll', reveal);
-        // Initial check
+        // Initial check after load
+        window.addEventListener('load', reveal);
         reveal();
     </script>
 </body>
