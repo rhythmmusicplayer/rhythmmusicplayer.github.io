@@ -35,7 +35,9 @@
 
     <header class="hero">
         <div class="container hero-content reveal active">
-            <img src="images/app_logo.svg" alt="Rhythm App Icon" class="app-icon-hero">
+            <div class="app-icon-float-wrap">
+                <img src="images/app_logo.svg" alt="Rhythm App Icon" class="app-icon-hero">
+            </div>
             <h1>Rhythm</h1>
             <p class="tagline">An elegant, open-source music player designed for modern Android. Experience audio that breathes.</p>
 
@@ -52,7 +54,7 @@
     </header>
 
     <div class="divider">
-        <svg viewBox="0 0 1440 120"><path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path></svg>
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path></svg>
     </div>
 
     <section id="intro">
@@ -127,7 +129,7 @@
     </section>
 
     <div class="divider divider-flip">
-        <svg viewBox="0 0 1440 120"><path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path></svg>
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path></svg>
     </div>
 
     <section id="gallery" class="gallery-section">
@@ -154,6 +156,13 @@
         <div class="container" style="text-align: center;">
             <h2 class="section-title reveal">Technical Excellence</h2>
             <p class="section-subtitle reveal">Built with the latest APIs and technologies.</p>
+
+            <div class="tech-logos reveal">
+                <svg class="tech-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img"><title>Kotlin</title><path d="M1.5 24l11-11L24 24zM1.5 0h11l11 11-11 11L1.5 11zM1.5 0l11 11-11 11z"/></svg>
+                <svg class="tech-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img"><title>Jetpack Compose</title><path d="M12 0L1.5 6v12L12 24l10.5-6V6L12 0zm0 3.5l7 4v9l-7 4-7-4v-9l7-4z"/></svg>
+                <svg class="tech-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img"><title>Media3</title><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                <svg class="tech-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img"><title>Material 3</title><path d="M12 2L2 22h20L12 2zm0 4l7.5 14H4.5L12 6z"/></svg>
+            </div>
 
             <div class="github-stats reveal">
                 <div class="stat-item">
@@ -209,7 +218,7 @@
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
-            progress.style.width = scrolled + "%";
+            if (progress) progress.style.width = scrolled + "%";
 
             // Navbar & Back to Top
             if (window.scrollY > 50) nav.classList.add('scrolled');
@@ -232,7 +241,7 @@
         const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entries[0].isIntersecting) {
+                if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                 }
             });
@@ -263,9 +272,11 @@
 
             const widget = document.querySelector('.theme-widget');
             if (manual) {
-                clearInterval(autoCycleInterval);
-                widget.style.transform = 'scale(1.05)';
-                setTimeout(() => { widget.style.transform = 'scale(1)'; }, 200);
+                if (autoCycleInterval) clearInterval(autoCycleInterval);
+                if (widget) {
+                    widget.style.transform = 'scale(1.05)';
+                    setTimeout(() => { widget.style.transform = 'scale(1)'; }, 200);
+                }
             }
 
             document.querySelectorAll('.color-dot').forEach(dot => dot.classList.remove('active'));
@@ -283,7 +294,7 @@
                 changeTheme(theme.primary, theme.container, null, false);
             }, 3000);
 
-            setTimeout(() => clearInterval(autoCycleInterval), 15000);
+            setTimeout(() => { if (autoCycleInterval) clearInterval(autoCycleInterval); }, 15000);
         }
 
         // Hero Mouse Parallax

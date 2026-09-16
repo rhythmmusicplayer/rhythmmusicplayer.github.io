@@ -19,6 +19,7 @@
     --glass-heavy: rgba(255, 255, 255, 0.1);
 
     --gradient-speed: 15s;
+    transition: --primary 0.5s ease, --primary-container 0.5s ease;
 }
 
 @media (prefers-color-scheme: light) {
@@ -60,11 +61,6 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Smoother variable transitions */
-:root {
-    transition: --primary 0.5s ease, --primary-container 0.5s ease;
-}
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -90,7 +86,7 @@ h1, h2, h3, .btn {
     letter-spacing: -0.04em;
 }
 
-/* Scroll Reveal Engine */
+/* Scroll Reveal Base */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -124,7 +120,7 @@ h1, h2, h3, .btn {
     position: relative;
 }
 
-/* Navbar - High Z-Index */
+/* Navbar */
 nav {
     position: fixed;
     top: 0;
@@ -162,9 +158,12 @@ nav.scrolled {
 .hero {
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+    position: relative;
+    padding: 120px 0 100px;
 }
 
 .hero-content {
@@ -177,6 +176,12 @@ nav.scrolled {
     z-index: 10;
 }
 
+.app-icon-float-wrap {
+    animation: floating 5s ease-in-out infinite;
+    margin-bottom: 40px;
+    will-change: transform;
+}
+
 @keyframes floating {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-15px); }
@@ -186,12 +191,10 @@ nav.scrolled {
 .app-icon-hero {
     width: 160px;
     height: 160px;
-    margin-bottom: 40px;
     border-radius: 40px;
     box-shadow: 0 20px 50px var(--shadow);
     background: var(--surface);
-    animation: floating 5s ease-in-out infinite;
-    will-change: transform;
+    transition: transform 0.1s ease-out, opacity 0.5s ease;
 }
 
 h1 {
@@ -209,6 +212,26 @@ h1 {
     color: var(--on-surface-variant);
     margin-bottom: 48px;
     max-width: 700px;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 2.5rem;
+    z-index: 20;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+    40% {transform: translateY(-10px) translateX(-50%);}
+    60% {transform: translateY(-5px) translateX(-50%);}
 }
 
 /* Organic Wave Dividers */
@@ -231,7 +254,7 @@ h1 {
     margin-bottom: -1px;
 }
 
-/* Features */
+/* Sections */
 section {
     padding: 120px 0;
     position: relative;
@@ -241,16 +264,26 @@ section {
 .section-title {
     text-align: center;
     font-size: 3.5rem;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
 }
 
+.section-subtitle {
+    text-align: center;
+    color: var(--on-surface-variant);
+    font-size: 1.5rem;
+    margin-bottom: 80px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Feature Grid */
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 32px;
 }
 
-/* Wrapped Card for Stable Animation */
 .feature-card-wrap {
     perspective: 1000px;
 }
@@ -276,13 +309,44 @@ section {
     display: block;
 }
 
-/* Gallery - Improved Arrow Centering */
+.feature-card h3 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+/* Value Props */
+.value-props {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+.value-card {
+    padding: 60px 40px;
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    border-radius: 40px;
+    border: 1px solid var(--glass-heavy);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.value-card:hover {
+    background: var(--glass-heavy);
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px var(--shadow);
+}
+
+/* Gallery */
 .gallery-section {
     background-color: var(--surface-variant);
+    padding: 120px 0;
 }
 
 .gallery-container {
     position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
     padding: 0 80px;
     display: flex;
     align-items: center;
@@ -291,8 +355,8 @@ section {
 .screenshots {
     display: flex;
     overflow-x: auto;
-    gap: 40px;
-    padding: 40px 0;
+    gap: 30px;
+    padding: 40px 10px;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
@@ -337,8 +401,8 @@ section {
     box-shadow: 0 0 20px var(--primary);
 }
 
-.gallery-arrow.left { left: 10px; }
-.gallery-arrow.right { right: 10px; }
+.gallery-arrow.left { left: 0px; }
+.gallery-arrow.right { right: 0px; }
 
 /* Theme Widget */
 .theme-widget {
@@ -365,13 +429,73 @@ section {
 
 .color-dot.active { border-color: var(--on-surface); transform: scale(1.15); }
 
+/* Tech logos */
+.tech-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+}
+
+.tech-logo {
+    height: 50px;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    fill: var(--on-surface);
+}
+
+.tech-logo:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    fill: var(--primary);
+}
+
+/* GitHub Stats */
+.github-stats {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.stat-item { text-align: center; }
+.stat-value { font-size: 3rem; color: var(--primary); display: block; }
+.stat-label { font-size: 1.1rem; color: var(--on-surface-variant); text-transform: uppercase; letter-spacing: 0.1em; }
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 22px 56px;
+    font-size: 1.4rem;
+    text-decoration: none;
+    border-radius: 100px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--on-primary);
+    box-shadow: 0 10px 30px var(--shadow);
+}
+
+.btn-primary:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 20px 40px var(--shadow);
+    filter: brightness(1.1);
+}
+
 /* Back to Top */
 #back-to-top {
     position: fixed;
     bottom: 40px;
     right: 40px;
-    width: 56px;
-    height: 56px;
+    width: 60px;
+    height: 60px;
     background: var(--primary);
     color: var(--on-primary);
     border-radius: 50%;
@@ -388,20 +512,27 @@ section {
     box-shadow: 0 10px 30px var(--shadow);
 }
 
-#back-to-top.visible {
-    opacity: 1;
-    visibility: visible;
+#back-to-top.visible { opacity: 1; visibility: visible; }
+#back-to-top:hover { transform: scale(1.1) translateY(-5px); }
+
+/* Footer */
+footer {
+    padding: 100px 0;
+    background-color: var(--surface-variant);
+    text-align: center;
+    border-top: 1px solid var(--outline);
 }
 
-#back-to-top:hover {
-    transform: scale(1.1) translateY(-5px);
-}
+.footer-content { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.footer-links a { color: var(--on-surface-variant); text-decoration: none; margin: 0 20px; font-weight: 600; transition: color 0.2s; }
+.footer-links a:hover { color: var(--primary); }
 
 @media (max-width: 768px) {
     h1 { font-size: 3.2rem; }
-    .tagline { font-size: 1.4rem; }
+    .section-title { font-size: 2.8rem; }
     .screenshots img { height: 450px; }
     .gallery-container { padding: 0 20px; }
     .gallery-arrow { display: none; }
     section { padding: 80px 0; }
+    .github-stats { gap: 30px; }
 }
