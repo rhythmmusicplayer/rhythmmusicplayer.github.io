@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rhythm | The Ultimate Android Music Experience</title>
 
+    <link rel="icon" type="image/svg+xml" href="images/app_logo.svg">
+
     <!-- OpenGraph / Social Metadata -->
     <meta property="og:title" content="Rhythm | Elegant Music Player for Android">
     <meta property="og:description" content="Experience high-fidelity audio with a UI that breathes. Open-source, modern, and built for your music collection.">
@@ -133,16 +135,16 @@
             <h2 class="section-title reveal">A Visual Journey</h2>
             <p class="section-subtitle reveal">Modern design language meets functional simplicity.</p>
             <div class="gallery-container reveal">
-                <div class="gallery-arrow left" onclick="scrollGallery(-1)">‹</div>
+                <div class="gallery-arrow left" onclick="scrollGallery(-1)" aria-label="Previous screenshot">‹</div>
                 <div class="screenshots" id="screenshot-slider">
-                    <img src="images/screenshot_tracks.png" alt="Track List">
-                    <img src="images/screenshot_player.png" alt="Now Playing">
-                    <img src="images/screenshot_driving.png" alt="Driving Mode">
-                    <img src="images/screenshot_equalizer.png" alt="Equalizer Controls">
-                    <img src="images/screenshot_trimmer.png" alt="Audio Trimmer">
-                    <img src="images/screenshot_folders.png" alt="Folder Navigation">
+                    <img src="images/screenshot_tracks.png" alt="Track List" loading="lazy">
+                    <img src="images/screenshot_player.png" alt="Now Playing" loading="lazy">
+                    <img src="images/screenshot_driving.png" alt="Driving Mode" loading="lazy">
+                    <img src="images/screenshot_equalizer.png" alt="Equalizer Controls" loading="lazy">
+                    <img src="images/screenshot_trimmer.png" alt="Audio Trimmer" loading="lazy">
+                    <img src="images/screenshot_folders.png" alt="Folder Navigation" loading="lazy">
                 </div>
-                <div class="gallery-arrow right" onclick="scrollGallery(1)">›</div>
+                <div class="gallery-arrow right" onclick="scrollGallery(1)" aria-label="Next screenshot">›</div>
             </div>
             <p class="reveal stagger-1" style="text-align: center; margin-top: 32px; color: var(--on-surface-variant); font-weight: 500;">← Scroll to explore the interface →</p>
         </div>
@@ -245,16 +247,61 @@
         }
 
         // Theme changer
-        function changeTheme(primary, container, el) {
+        const themes = [
+            {primary: '#A78BFA', container: '#2E1065'},
+            {primary: '#38BDF8', container: '#0F172A'},
+            {primary: '#43A047', container: '#1B5E20'},
+            {primary: '#E53935', container: '#B71C1C'},
+            {primary: '#FB8C00', container: '#E65100'}
+        ];
+        let currentThemeIndex = 0;
+        let autoCycleInterval;
+
+        function changeTheme(primary, container, el, manual = true) {
             document.documentElement.style.setProperty('--primary', primary);
             document.documentElement.style.setProperty('--primary-container', container);
 
             const widget = document.querySelector('.theme-widget');
-            widget.style.transform = 'scale(1.05)';
-            setTimeout(() => { widget.style.transform = 'scale(1)'; }, 200);
+            if (manual) {
+                clearInterval(autoCycleInterval);
+                widget.style.transform = 'scale(1.05)';
+                setTimeout(() => { widget.style.transform = 'scale(1)'; }, 200);
+            }
 
             document.querySelectorAll('.color-dot').forEach(dot => dot.classList.remove('active'));
-            el.classList.add('active');
+            if (el) el.classList.add('active');
+            else {
+                const dots = document.querySelectorAll('.color-dot');
+                if (dots[currentThemeIndex]) dots[currentThemeIndex].classList.add('active');
+            }
+        }
+
+        function startAutoCycle() {
+            autoCycleInterval = setInterval(() => {
+                currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+                const theme = themes[currentThemeIndex];
+                changeTheme(theme.primary, theme.container, null, false);
+            }, 3000);
+
+            setTimeout(() => clearInterval(autoCycleInterval), 15000);
+        }
+
+        // Hero Mouse Parallax
+        const hero = document.querySelector('.hero');
+        const heroIcon = document.querySelector('.app-icon-hero');
+
+        if (hero && heroIcon) {
+            hero.addEventListener('mousemove', (e) => {
+                const { clientX, clientY } = e;
+                const { innerWidth, innerHeight } = window;
+                const x = (clientX / innerWidth - 0.5) * 30;
+                const y = (clientY / innerHeight - 0.5) * 30;
+                heroIcon.style.transform = `translateY(${y}px) rotateX(${-y/2}deg) rotateY(${x/2}deg)`;
+            });
+
+            hero.addEventListener('mouseleave', () => {
+                heroIcon.style.transform = `translateY(0) rotateX(0) rotateY(0)`;
+            });
         }
 
         // Handle page load
@@ -264,6 +311,7 @@
                     el.classList.add('active');
                 }
             });
+            startAutoCycle();
         });
     </script>
 </body>
