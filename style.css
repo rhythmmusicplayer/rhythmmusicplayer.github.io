@@ -115,14 +115,14 @@ nav {
     left: 0;
     width: 100%;
     z-index: 2000;
-    padding: 20px 0;
+    padding: 12px 0;
     transition: all 0.3s ease;
 }
 nav.scrolled {
     background: var(--glass-heavy);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    padding: 12px 0;
+    padding: 8px 0;
     border-bottom: 1px solid var(--outline);
 }
 .nav-container {
@@ -133,10 +133,14 @@ nav.scrolled {
 .nav-logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     text-decoration: none;
     color: var(--on-surface);
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+}
+.nav-logo img {
+    height: 28px;
+    width: auto;
 }
 
 /* Buttons - ENSURED BOXES */
