@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rhythm | The Ultimate Android Music Experience</title>
+
+    <!-- OpenGraph / Social Metadata -->
+    <meta property="og:title" content="Rhythm | Elegant Music Player for Android">
+    <meta property="og:description" content="Experience high-fidelity audio with a UI that breathes. Open-source, modern, and built for your music collection.">
+    <meta property="og:image" content="https://rhythmmusicplayer.github.io/images/app_logo.svg">
+    <meta property="og:url" content="https://rhythmmusicplayer.github.io">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,6 +34,15 @@
             <img src="images/app_logo.svg" alt="Rhythm App Icon" class="app-icon-hero">
             <h1>Rhythm</h1>
             <p class="tagline">An elegant, open-source music player designed for modern Android. Experience audio that breathes.</p>
+
+            <div class="theme-widget">
+                <p style="margin-bottom: 12px; font-weight: 500;">Preview Dynamic Themes</p>
+                <div class="color-dot active" style="background: #A78BFA;" onclick="changeTheme('#A78BFA', '#2E1065', this)"></div>
+                <div class="color-dot" style="background: #38BDF8;" onclick="changeTheme('#38BDF8', '#0F172A', this)"></div>
+                <div class="color-dot" style="background: #43A047;" onclick="changeTheme('#43A047', '#1B5E20', this)"></div>
+                <div class="color-dot" style="background: #E53935;" onclick="changeTheme('#E53935', '#B71C1C', this)"></div>
+                <div class="color-dot" style="background: #FB8C00;" onclick="changeTheme('#FB8C00', '#E65100', this)"></div>
+            </div>
         </div>
         <a href="#features" class="scroll-indicator">↓</a>
     </header>
@@ -104,14 +121,37 @@
     <section id="tech">
         <div class="container" style="text-align: center;">
             <h2 class="section-title reveal">Built for Modern Android</h2>
-            <p class="section-subtitle reveal">Leveraging the latest APIs to deliver a future-proof experience.</p>
-            <div class="tech-badges reveal">
-                <span class="tech-badge">Kotlin First</span>
-                <span class="tech-badge">Jetpack Compose</span>
-                <span class="tech-badge">Media3 / ExoPlayer</span>
-                <span class="tech-badge">Material Design 3</span>
-                <span class="tech-badge">Coroutines & Flow</span>
-                <span class="tech-badge">MVVM / Clean Architecture</span>
+            <p class="section-subtitle reveal">Leveraging the latest APIs and technologies.</p>
+
+            <div class="tech-logos reveal">
+                <!-- Simplified SVG Logos -->
+                <svg class="tech-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="Kotlin">
+                    <path d="M1.5 24l11-11L24 24zM1.5 0h11l11 11-11 11L1.5 11zM1.5 0l11 11-11 11z"/>
+                </svg>
+                <svg class="tech-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="Jetpack Compose">
+                    <path d="M12 0L1.5 6v12L12 24l10.5-6V6L12 0zm0 3.5l7 4v9l-7 4-7-4v-9l7-4z"/>
+                </svg>
+                <svg class="tech-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="ExoPlayer">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+                </svg>
+                <svg class="tech-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="Material Design">
+                    <path d="M12 2L2 22h20L12 2zm0 4l7.5 14H4.5L12 6z"/>
+                </svg>
+            </div>
+
+            <div class="github-stats reveal">
+                <div class="stat-item">
+                    <span class="stat-value">Open</span>
+                    <span class="stat-label">Source</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">Kotlin</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">Zero</span>
+                    <span class="stat-label">Ads</span>
+                </div>
             </div>
         </div>
     </section>
@@ -143,10 +183,21 @@
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
+            const heroIcon = document.querySelector('.app-icon-hero');
+
             if (window.scrollY > 50) {
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
+            }
+
+            // Scroll-linked animation for hero icon
+            if (heroIcon) {
+                const scrollPos = window.scrollY;
+                const scale = 1 - Math.min(scrollPos / 1000, 0.2);
+                const opacity = 1 - Math.min(scrollPos / 500, 0.5);
+                heroIcon.style.transform = `scale(${scale})`;
+                heroIcon.style.opacity = opacity;
             }
         });
 
@@ -162,6 +213,21 @@
                 }
             }
         };
+
+        // Theme changer
+        function changeTheme(primary, container, el) {
+            document.documentElement.style.setProperty('--primary', primary);
+            document.documentElement.style.setProperty('--primary-container', container);
+
+            // Add a small bounce animation to the theme widget
+            const widget = document.querySelector('.theme-widget');
+            widget.style.transform = 'scale(1.05)';
+            setTimeout(() => { widget.style.transform = 'scale(1)'; }, 200);
+
+            // Update dots
+            document.querySelectorAll('.color-dot').forEach(dot => dot.classList.remove('active'));
+            el.classList.add('active');
+        }
 
         window.addEventListener('scroll', reveal);
         // Initial check

@@ -17,6 +17,8 @@
     --shadow: rgba(0, 0, 0, 0.4);
     --glass: rgba(255, 255, 255, 0.05);
     --glass-heavy: rgba(255, 255, 255, 0.1);
+
+    --gradient-speed: 15s;
 }
 
 @media (prefers-color-scheme: light) {
@@ -102,6 +104,19 @@ h1 {
     transform: translateY(0);
 }
 
+/* Animated Gradient Backgrounds */
+@keyframes meshGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hero, .cta-section {
+    background: linear-gradient(-45deg, var(--surface), var(--primary-container), var(--surface-variant), var(--surface));
+    background-size: 400% 400%;
+    animation: meshGradient var(--gradient-speed) ease infinite;
+}
+
 /* Navbar */
 nav {
     position: fixed;
@@ -149,7 +164,6 @@ nav.scrolled {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: radial-gradient(circle at 50% 50%, var(--primary-container), transparent 80%);
     position: relative;
     padding: 120px 0 100px;
 }
@@ -170,6 +184,7 @@ nav.scrolled {
     border-radius: 40px;
     box-shadow: 0 20px 50px var(--shadow);
     transition: all 0.5s ease;
+    background: var(--surface);
 }
 
 .scroll-indicator {
@@ -184,10 +199,6 @@ nav.scrolled {
     z-index: 20;
     opacity: 0.8;
     transition: opacity 0.3s ease;
-}
-
-.scroll-indicator:hover {
-    opacity: 1;
 }
 
 @keyframes bounce {
@@ -207,6 +218,7 @@ nav.scrolled {
 .value-card {
     padding: 60px 40px;
     background: var(--glass);
+    backdrop-filter: blur(8px);
     border-radius: 40px;
     border: 1px solid var(--glass);
     text-align: center;
@@ -216,6 +228,7 @@ nav.scrolled {
 .value-card:hover {
     background: var(--glass-heavy);
     transform: translateY(-10px);
+    box-shadow: 0 10px 30px var(--shadow);
 }
 
 .value-card h3 {
@@ -302,11 +315,88 @@ section {
     transition: transform 0.5s ease;
 }
 
+/* Tech Logos */
+.tech-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.tech-logo {
+    height: 48px;
+    opacity: 0.7;
+    transition: opacity 0.3s, transform 0.3s;
+    filter: grayscale(100%) invert(100%);
+}
+
+.tech-logo:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    filter: none;
+}
+
+/* GitHub Stats Section */
+.github-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    color: var(--primary);
+    display: block;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: var(--on-surface-variant);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Dynamic Theme Widget */
+.theme-widget {
+    margin-top: 40px;
+    padding: 24px;
+    background: var(--glass);
+    border-radius: 24px;
+    border: 1px solid var(--glass);
+    display: inline-block;
+}
+
+.color-dot {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin: 0 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.color-dot:hover {
+    transform: scale(1.2);
+}
+
+.color-dot.active {
+    border-color: var(--on-surface);
+}
+
 /* CTA Section */
 .cta-section {
     padding: 150px 0;
     text-align: center;
-    background: radial-gradient(circle at 50% 50%, var(--primary-container), transparent);
 }
 
 .cta-content {
@@ -366,4 +456,5 @@ footer {
     .tagline { font-size: 1.4rem; }
     .screenshots img { height: 500px; }
     .feature-card { padding: 40px; }
+    .tech-logos { gap: 32px; }
 }
