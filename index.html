@@ -30,6 +30,10 @@
                 <span style="font-family: 'Syne', sans-serif; font-weight: 700;">Rhythm</span>
             </a>
             <div style="display: flex; gap: 12px; align-items: center;">
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
                 <a href="mailto:rhythmmusicplayer@gmail.com?subject=Rhythm%20Bug%20Report%20%26%20Feedback" class="btn" style="padding: 10px 24px; font-size: 1rem; border: 1px solid var(--outline); background: transparent; color: var(--on-surface);">Report Bug</a>
                 <a href="#download" class="btn btn-primary" style="padding: 10px 24px; font-size: 1rem;">Get APK</a>
             </div>
@@ -55,6 +59,25 @@
         </div>
         <a href="#intro" class="scroll-indicator" style="text-decoration: none;">↓</a>
     </header>
+
+    <section id="stats" class="stats-section">
+        <div class="container reveal">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span id="github-stars" class="stat-value">--</span>
+                    <span class="stat-label">GitHub Stars</span>
+                </div>
+                <div class="stat-item">
+                    <span id="github-forks" class="stat-value">--</span>
+                    <span class="stat-label">Forks</span>
+                </div>
+                <div class="stat-item">
+                    <span id="github-issues" class="stat-value">--</span>
+                    <span class="stat-label">Open Issues</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <div class="divider">
         <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path></svg>
@@ -131,6 +154,26 @@
         </div>
     </section>
 
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <h2 class="section-title reveal">Frequently Asked Questions</h2>
+            <div class="faq-accordion reveal">
+                <div class="faq-item">
+                    <div class="faq-question">Is Rhythm free to use? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer"><p>Yes, Rhythm is completely free and open-source under the MIT license.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Does it support lossless formats? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer"><p>Absolutely. Rhythm supports FLAC, WAV, and other high-fidelity formats out of the box.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How do I import my music? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer"><p>Simply grant storage permissions, and Rhythm will automatically scan your device for audio files.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <div class="divider divider-flip">
         <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path></svg>
     </div>
@@ -142,6 +185,35 @@
 
             <div class="mockup-container reveal" style="max-width: 320px; margin: 40px auto; border: 12px solid #222; border-radius: 36px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); overflow: hidden; background: #000;">
                 <img src="images/app_teaser.gif" alt="Rhythm App Teaser" style="width: 100%; display: block; border-radius: 24px;">
+            </div>
+        </div>
+    </section>
+
+    <section id="timeline" class="timeline-section">
+        <div class="container">
+            <h2 class="section-title reveal">Roadmap & Changelog</h2>
+            <div class="timeline reveal">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>v1.2 - The EQ Update</h3>
+                        <p>Added 5-band equalizer, bass boost, and reverb effects.</p>
+                        <span class="date">October 2023</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>v1.5 - Visual Overhaul</h3>
+                        <p>Implemented Material You dynamic colors and new animations.</p>
+                        <span class="date">December 2023</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>v2.0 - Future Beat</h3>
+                        <p>Planned cloud sync and collaborative playlists.</p>
+                        <span class="date">Q2 2024</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -191,7 +263,74 @@
 
     <a href="#" id="back-to-top">↑</a>
 
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Enlarged screenshot">
+        <div id="lightbox-caption"></div>
+    </div>
+
     <script>
+        // Feature 6: Theme Toggle Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // Check for saved theme or default to dark
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        htmlElement.setAttribute('data-theme', savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Feature 2: GitHub Stats
+        async function fetchGitHubStats() {
+            try {
+                const response = await fetch('https://api.github.com/repos/sreejith19931/Rhythm-App');
+                const data = await response.json();
+                document.getElementById('github-stars').textContent = data.stargazers_count;
+                document.getElementById('github-forks').textContent = data.forks_count;
+                document.getElementById('github-issues').textContent = data.open_issues_count;
+            } catch (error) {
+                console.error('Error fetching GitHub stats:', error);
+            }
+        }
+        fetchGitHubStats();
+
+        // Feature 4: FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Feature 7: Lightbox Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const closeLightbox = document.querySelector('.close-lightbox');
+
+        document.querySelectorAll('.screenshots img').forEach(img => {
+            img.addEventListener('click', () => {
+                lightbox.style.display = 'block';
+                lightboxImg.src = img.src;
+                lightboxCaption.innerHTML = img.alt;
+            });
+        });
+
+        closeLightbox.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.style.display = 'none';
+            }
+        });
+
         // Scroll Logic
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
